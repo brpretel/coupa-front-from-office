@@ -1,0 +1,105 @@
+.left-menu {
+  width: 200px;
+  height: 100vh;
+  padding: 0px 0px 0px 15px;
+  background-color: #333;
+  color: white;
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  flex-direction: column; /* Organiza los hijos en una columna */
+  justify-content: space-between;
+}
+
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px 0px 0px;
+}
+
+.company-logo {
+  max-width: 35px;
+  height: auto;
+}
+
+.company-card-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  max-width: calc(50% - 0px);
+}
+
+.company-card-info h1,
+.company-card-info span {
+  font-size: 14px; /* Ajusta según necesidad */
+  margin: 0;
+  white-space: nowrap; /* Evita que el texto se envuelva */
+  overflow: hidden; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es demasiado largo */
+}
+
+.company-card-info span {
+  font-size: 11px;
+}
+.menu-element-container {
+  flex-grow: 1; /* Permite que este elemento ocupe el espacio disponible */
+  overflow-y: auto; /* Añade scroll si el contenido es demasiado largo */
+}
+
+.menu-items {
+  list-style: none;
+  padding: 20px 0px 0px 0px;
+  margin: 0px 0px 10px 0px;
+}
+
+.menu-item {
+  display: flex; /* Activa Flexbox */
+  align-items: center; /* Centra los elementos verticalmente */
+  padding: 5px;
+  cursor: pointer;
+}
+
+.menu-item svg {
+  width: 12px; /* Espacio entre el ícono y el texto */
+  margin-right: 5px;
+  color: white; /* Color del btícono */
+  /* Otros estilos como tamaño, etc. */
+}
+
+.menu-footer {
+  display: flex; /* Activar Flexbox */
+  align-items: center; /* Alinear elementos verticalmente al centro */
+  gap: 5px; /* Espacio entre elementos */
+  padding: 0px 0px 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 20px 0px;
+}
+
+.profile-card-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column; /* Organiza los elementos verticalmente */
+  padding: 0px 0px 0px 5px;
+}
+
+.profile-card-info h1 {
+  font-size: 12px;
+  transform: scaleX(1.02); /* Escala horizontalmente */
+}
+
+.profile-card-info span {
+  font-size: 10px;
+}
+
+.profile-card-info h1,
+.profile-card-info span {
+  margin: 0; /* Elimina los márgenes para evitar espacios entre elementos */
+}
+
+.profile-img {
+  max-width: 35px; /* Ajustar según necesidad */
+  height: auto; /* Mantiene la relación de aspecto */
+  border-radius: 5px 5px 5px 5px;
+}

@@ -1,5 +1,9 @@
 .cases-container {
-  padding: 2%;
+  padding: 1.5%;
+}
+
+.cases-container p {
+  padding: 1% 0% 1% 2%;
 }
 
 .table-scroll-container {
@@ -32,4 +36,24 @@ tr:nth-child(even) {
 .cases-table-header,
 tr:hover {
   background-color: #eaeaea;
+}
+
+.action-button {
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 0 5px;
+  color: white;
+}
+
+.cases-button-green-background {
+  background-color: green;
+}
+
+.cases-button-yellow-background {
+  background-color: orange;
+}
+
+.next-action-cell {
+  background-color: #ffcccc;
 }

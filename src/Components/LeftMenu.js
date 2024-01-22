@@ -28,8 +28,6 @@ function LeftMenu() {
   };
 
   const collapsedClass = isExpanded ? "" : "collapsed"; // Asegúrate de definir collapsedClass
-
-  // Función para manejar el clic en el elemento del menú
   const navigateTo = (path) => {
     navigate(path);
   };

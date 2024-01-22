@@ -7,11 +7,11 @@ import {
   faEllipsisVertical,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Header() {
+function Header({ title }) {
   return (
     <div className="container">
       <div className="left-container">
-        <h2>Dashboard</h2>
+        <h2>{title}</h2>
       </div>
       <div className="mid-container">
         <FontAwesomeIcon icon={faSearch} className="faSearch" />

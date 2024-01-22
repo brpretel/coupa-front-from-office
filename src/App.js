@@ -10,23 +10,36 @@ import SlackHelp from "./Pages/SlackHelp";
 import Profile from "./Pages/Profile";
 import Settings from "./Pages/Settings";
 import ProtectedRoute from "./ProtectedRoute";
+import CasesForm from "./Components/CasesForm";
 
 function App() {
   const location = useLocation(); // Obtiene la ubicación actual
+  const showMenuAndHeader = location.pathname !== "/Login";
 
-  const showMenuAndHeader = location.pathname !== "/Login"; // Condición para mostrar o no el menú y el encabezado
+  // Función para obtener el título de la página actual
+  const getPageTitle = (pathname) => {
+    const path = pathname.split("/").filter(Boolean);
+    return path.length > 0 ? path[path.length - 1] : "Dashboard";
+  };
+
+  const title = getPageTitle(location.pathname); // Obtiene el título basado en la ruta
 
   return (
     <div className="main-layout">
-      {showMenuAndHeader && <LeftMenu />} {/* Renderizado condicional */}
+      {showMenuAndHeader && <LeftMenu />}{" "}
       <div className="content-layout">
-        {showMenuAndHeader && <Header />} {/* Renderizado condicional */}
+        {showMenuAndHeader && <Header title={title} />}{" "}
         <Routes>
           <Route
             path="/dashboard"
             element={<ProtectedRoute element={Dashboard} />}
           />
           <Route path="/cases" element={<ProtectedRoute element={Cases} />} />
+          <Route
+            path="/case-form"
+            element={<ProtectedRoute element={CasesForm} />}
+          />
+
           <Route
             path="/escalations"
             element={<ProtectedRoute element={Escalations} />}

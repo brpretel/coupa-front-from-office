@@ -40,17 +40,21 @@ function Login() {
 
   async function handleLogin(username, password) {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/login", {
-        headers: {
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        "http://127.0.0.1:8000/auth/login",
+        {
+          username,
+          password,
         },
-        username,
-        password,
-        credentials: "include",
-        body: JSON.stringify(username, password),
-      });
-      console.log(response.data); // Maneja la respuesta aquí
-      localStorage.setItem("access_token", response.data.access_token);
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      sessionStorage.setItem("access_token", response.data.access_token);
       navigate("/app");
     } catch (error) {
       console.error("Error al iniciar sesión", error);

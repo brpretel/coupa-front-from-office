@@ -1,5 +1,7 @@
 import "../style/Dashboard.css";
-import Chart from "../Components/Chart";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpRightDots,
@@ -9,14 +11,40 @@ import {
   faPlus,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import Chart from "../Components/Chart";
 
 function Dashboard() {
+  const navigate = useNavigate();
+  const [cases, setCases] = useState([]);
+  const totalEscalations = cases.filter(
+    (caseItem) => caseItem.jira_escalation_number !== 0
+  ).length;
+
+  const fetchCases = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:8000/cases/show_agent_cases/",
+        { withCredentials: true }
+      );
+      setCases(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCases();
+  }, []);
+
   return (
     <div className="dashboard-layout">
       <div className="dashboard-data-container">
         <div className="data-container-1">
-          <div className="left-data-container">
-            <h2>365</h2>
+          <div
+            className="left-data-container"
+            onClick={() => navigate("/cases")}
+          >
+            <h2>{cases.length}</h2>
             <p>Total Cases</p>
           </div>
           <div className="right-data-container">
@@ -28,7 +56,7 @@ function Dashboard() {
         </div>
         <div className="data-container-2">
           <div className="left-data-container">
-            <h2>365</h2>
+            <h2>{totalEscalations}</h2>
             <p>Total Escalations</p>
           </div>
           <div className="right-data-container">

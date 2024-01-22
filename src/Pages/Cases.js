@@ -1,40 +1,77 @@
+// Import necessary modules and styles
 import "../style/Cases.css";
+import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleCheck,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 
 function Cases() {
+  const [cases, setCases] = useState([]);
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await axios.get(
+          "http://127.0.0.1:8000/cases/show_agent_cases/",
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response);
+        setCases(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchCases();
+  }, []);
+
   return (
     <div className="cases-container">
-      <p>Cases</p>
       <div className="table-scroll-container">
         <table className="cases-table">
           <thead className="cases-table-header">
             <tr>
-              <th>Emoji</th>
+              <th>Creation Date</th>
+              <th>Escalation Number</th>
+              <th>Case Number</th>
+              <th>Case Status</th>
               <th>Type</th>
-              <th>Case</th>
-              <th>Topic</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th>Description</th>
+              <th>Next Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Dato 1-1</td>
-              <td>Dato 1-2</td>
-              <td>Dato 1-3</td>
-              <td>Dato 1-4</td>
-              <td>Dato 1-5</td>
-              <td>Dato 1-6</td>
-            </tr>
-            <tr>
-              <td>Dato 2-1</td>
-              <td>Dato 2-2</td>
-              <td>Dato 2-3</td>
-              <td>Dato 2-4</td>
-              <td>Dato 2-5</td>
-              <td>Dato 1-6</td>
-            </tr>
+            {cases.map((cases, index) => (
+              <tr key={index}>
+                <td>{cases.creation_date}</td>
+                <td>{cases.jira_escalation_number}</td>
+                <td>{cases.salesforce_case_number}</td>
+                <td>{cases.case_status}</td>
+                <td>{cases.case_topic}</td>
+                <td>{cases.description}</td>
+                <td className="next-action-cell">text</td>
+                <td>
+                  <button
+                    className="action-button cases-button-green-background"
+                    title="Solved"
+                  >
+                    <FontAwesomeIcon icon={faCircleCheck} />
+                  </button>
+                  <button
+                    className="action-button cases-button-yellow-background"
+                    title="Edit"
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

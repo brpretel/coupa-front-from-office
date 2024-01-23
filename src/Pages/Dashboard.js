@@ -23,7 +23,7 @@ function Dashboard() {
   const fetchCases = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/cases/show_agent_cases/",
+        "https://coupa-backend-production.up.railway.app/cases/show_agent_cases/",
         { withCredentials: true }
       );
       setCases(response.data);

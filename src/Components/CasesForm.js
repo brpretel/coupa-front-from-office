@@ -1,5 +1,4 @@
-// Import necessary modules and styles
-import "../style/CasesForm.css"; // Ensure this path is correct
+import "../style/CasesForm.css";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -10,25 +9,40 @@ import {
   faFlag,
   faForward,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function CasesForm() {
-  // State for form data (you can expand this with more fields as needed)
+  // Estado para los datos del formulario
   const [formData, setFormData] = useState({
     caseNumber: "",
-    caseDescription: "",
+    jiraNumber: "",
     caseStatus: "",
     caseType: "",
-    caseOwner: "",
+    caseNextAction: "",
+    caseDescription: "",
   });
 
-  // Handle form submission
-  const handleSubmit = (event) => {
+  // Manejar el envío del formulario
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Implement submission logic here (e.g., send data to backend)
+    try {
+      const response = await axios.post(
+        "https://coupa-backend-production.up.railway.app/cases/create_case/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+      alert("Caso creado con éxito.");
+    } catch (error) {
+      console.error("Error al registrar", error);
+    }
   };
 
-  // Handle input changes
+  // Manejar cambios en los inputs
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -39,64 +53,94 @@ function CasesForm() {
         <h2>Case Creation</h2>
         <div className="case-form-elements">
           <div className="case-form-left-panel">
+            {/* Caso Número */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Case Number</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faHashtag} />
-                <input></input>
+                <input
+                  name="caseNumber"
+                  value={formData.caseNumber}
+                  onChange={handleChange}
+                />
               </div>
             </div>
+            {/* Jira Número */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Jira Number</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faArrowUpRightDots} />
-                <input></input>
+                <input
+                  name="jiraNumber"
+                  value={formData.jiraNumber}
+                  onChange={handleChange}
+                />
               </div>
             </div>
+            {/* Caso Estado */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Case Status</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faTemperatureHalf} />
-                <input></input>
+                <input
+                  name="caseStatus"
+                  value={formData.caseStatus}
+                  onChange={handleChange}
+                />
               </div>
             </div>
+            {/* Caso Tipo */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Case Type</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faFlag} />
-                <input></input>
+                <input
+                  name="caseType"
+                  value={formData.caseType}
+                  onChange={handleChange}
+                />
               </div>
             </div>
           </div>
           <div className="case-form-right-panel">
+            {/* Caso Siguiente Acción */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Case Next Action</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faForward} />
-                <input></input>
+                <input
+                  name="caseNextAction"
+                  value={formData.caseNextAction}
+                  onChange={handleChange}
+                />
               </div>
             </div>
+            {/* Caso Descripción */}
             <div className="content-elements">
               <div className="element-label">
                 <label>Case Description</label>
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faAlignJustify} />
-                <textarea></textarea>
+                <textarea
+                  name="caseDescription"
+                  value={formData.caseDescription}
+                  onChange={handleChange}
+                />
               </div>
             </div>
             <div className="content-elements">
-              <button>Create Case</button>
+              <button type="submit">Create Case</button>
             </div>
           </div>
         </div>

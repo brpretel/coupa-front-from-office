@@ -27,7 +27,7 @@ function LeftMenu() {
     setIsExpanded(false);
   };
 
-  const collapsedClass = isExpanded ? "" : "collapsed"; // Asegúrate de definir collapsedClass
+  const collapsedClass = isExpanded ? "" : "collapsed";
   const navigateTo = (path) => {
     navigate(path);
   };

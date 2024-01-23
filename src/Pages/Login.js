@@ -10,7 +10,7 @@ import {
   faLinkedinIn,
 } from "@fortawesome/free-brands-svg-icons";
 import logoSignIn from "../logos/logo-no-background.svg";
-import "../style/login.css"; // Asegúrate de que la ruta es correcta
+import "../style/login.css";
 
 function Login() {
   const [mode, setMode] = useState("");
@@ -21,15 +21,18 @@ function Login() {
 
   async function handleRegister(username, password, user_vertical) {
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/register", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        username,
-        password,
-        user_vertical,
-        body: JSON.stringify(username, password, user_vertical),
-      });
+      const response = await axios.post(
+        "https://coupa-backend-production.up.railway.app/auth/register",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          username,
+          password,
+          user_vertical,
+          body: JSON.stringify(username, password, user_vertical),
+        }
+      );
       console.log(response.data);
       alert("Usuario creado con éxito. Por favor, inicia sesión.");
       toggleMode("sign-in-mode");
@@ -41,7 +44,7 @@ function Login() {
   async function handleLogin(username, password) {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/auth/login",
+        "https://coupa-backend-production.up.railway.app/auth/login",
         {
           username,
           password,

@@ -7,6 +7,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
+//Importing the external components used in this file
+import CasesForm from "../Components/CasesForm";
+
 function Cases() {
   const [cases, setCases] = useState([]);
 
@@ -30,7 +33,9 @@ function Cases() {
   }, []);
 
   return (
+    
     <div className="cases-container">
+      <CasesForm/>
       <div className="table-scroll-container">
         <table className="cases-table">
           <thead className="cases-table-header">

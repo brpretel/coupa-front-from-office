@@ -8,18 +8,19 @@ import {
   faTemperatureHalf,
   faFlag,
   faForward,
+  faFile,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function CasesForm() {
   // Estado para los datos del formulario
   const [formData, setFormData] = useState({
-    caseNumber: "",
-    jiraNumber: "",
-    caseStatus: "",
-    caseType: "",
-    caseNextAction: "",
-    caseDescription: "",
+    case_type: "",
+    case_status: "",
+    description: "",
+    resources: "",
+    salesforce_case_number: 0,
+    jira_escalation_number: 0,
   });
 
   // Manejar el envío del formulario
@@ -33,12 +34,14 @@ function CasesForm() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
       console.log(response.data);
       alert("Caso creado con éxito.");
     } catch (error) {
       console.error("Error al registrar", error);
+      alert("Numero de caso Duplicado o campos vacios.");
     }
   };
 
@@ -61,9 +64,11 @@ function CasesForm() {
               <div className="element-input">
                 <FontAwesomeIcon icon={faHashtag} />
                 <input
-                  name="caseNumber"
-                  value={formData.caseNumber}
+                  name="salesforce_case_number"
+                  type="number"
+                  value={formData.salesforce_case_number}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -75,8 +80,9 @@ function CasesForm() {
               <div className="element-input">
                 <FontAwesomeIcon icon={faArrowUpRightDots} />
                 <input
-                  name="jiraNumber"
-                  value={formData.jiraNumber}
+                  name="jira_escalation_number"
+                  type="number"
+                  value={formData.jira_escalation_number}
                   onChange={handleChange}
                 />
               </div>
@@ -88,11 +94,18 @@ function CasesForm() {
               </div>
               <div className="element-input">
                 <FontAwesomeIcon icon={faTemperatureHalf} />
-                <input
-                  name="caseStatus"
-                  value={formData.caseStatus}
+                <select
+                  name="case_status"
+                  value={formData.case_status}
                   onChange={handleChange}
-                />
+                  required
+                >
+                  <option value="">Select User Vertical</option>
+                  <option value="Open">Open</option>
+                  <option value="Escalated">Escalated</option>
+                  <option value="Closed Resolved">Closed Resolved</option>
+                  <option value="Closed Unresolved">Closed Unresolved</option>
+                </select>
               </div>
             </div>
             {/* Caso Tipo */}
@@ -103,9 +116,10 @@ function CasesForm() {
               <div className="element-input">
                 <FontAwesomeIcon icon={faFlag} />
                 <input
-                  name="caseType"
-                  value={formData.caseType}
+                  name="case_type"
+                  value={formData.case_type}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -122,6 +136,22 @@ function CasesForm() {
                   name="caseNextAction"
                   value={formData.caseNextAction}
                   onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            {/* Caso Resources */}
+            <div className="content-elements">
+              <div className="element-label">
+                <label>Case Resources</label>
+              </div>
+              <div className="element-input">
+                <FontAwesomeIcon icon={faFile} />
+                <input
+                  name="resources"
+                  value={formData.resources}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -133,8 +163,8 @@ function CasesForm() {
               <div className="element-input">
                 <FontAwesomeIcon icon={faAlignJustify} />
                 <textarea
-                  name="caseDescription"
-                  value={formData.caseDescription}
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
                 />
               </div>

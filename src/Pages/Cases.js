@@ -6,6 +6,7 @@ import {
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import 'reactjs-popup/dist/index.css';
 
 //Importing the external components used in this file
 import CasesForm from "../Components/CasesForm";
@@ -36,6 +37,7 @@ function Cases() {
     
     <div className="cases-container">
       <CasesForm/>
+      
       <div className="table-scroll-container">
         <table className="cases-table">
           <thead className="cases-table-header">

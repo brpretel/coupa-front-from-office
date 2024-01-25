@@ -14,7 +14,7 @@ import {
 import Chart from "../Components/Chart";
 
 function Dashboard() {
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
   const [cases, setCases] = useState([]);
   const totalEscalations = cases.filter(
     (caseItem) => caseItem.jira_escalation_number !== 0
@@ -42,7 +42,7 @@ function Dashboard() {
         <div className="data-container-1">
           <div
             className="left-data-container"
-            onClick={() => navigate("/cases")}
+            
           >
             <h2>{cases.length}</h2>
             <p>Total Cases</p>
@@ -85,10 +85,10 @@ function Dashboard() {
         </p>
         <div className="tasks-container">
           <div className="task-box">
-            <div className="left-task-item">
+            <div className="left-task-item" onClick={() => navigateTo("/Dashboard")}>
               <FontAwesomeIcon icon={faPlus} />
             </div>
-            <div className="right-task-item">Create a new Case</div>
+            <div className="right-task-item" onClick={() => navigateTo("/cases")}>Create a new Case</div>
           </div>
           <div className="task-box">
             <div className="left-task-item">

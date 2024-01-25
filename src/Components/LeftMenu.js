@@ -1,5 +1,5 @@
 import "../style/LeftMenu.css";
-import image from "../IMGpersonal.jpg";
+import image from "../logos/coupa-notes-high-resolution-logo-white-transparent.svg";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -34,19 +34,18 @@ function LeftMenu() {
 
   return (
     <nav
-      className={`left-menu ${isExpanded ? "" : "collapsed"}`}
+      className={`left-menu ${isExpanded ? "expanded" : "collapsed"}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className={`menu-header ${collapsedClass}`}>
-        <img
-          className="company-logo"
+        <img id="company-logo"
+          className={`${isExpanded ? "logoExpanded" : "logoCollapsed"}`}
           src={image}
           alt="Grapefruit slice atop a pile of other slices"
         />
         <div className={`company-card-info ${collapsedClass}`}>
-          <h1>COUPA</h1>
-          <span>Senior IT </span>
+          
         </div>
       </div>
       <div className={`menu-element-container ${collapsedClass}`}>

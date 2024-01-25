@@ -9,6 +9,7 @@
   align-items: center;
   transition: width 0.3s;
   background-color: #1565c0;
+  
 }
 
 .menu-header {
@@ -19,10 +20,11 @@
   padding: 15px 0px 0px 0px;
 }
 
-.company-logo {
-  max-width: 35px;
+.logoExpanded {
+  max-width: 9em;
   height: auto;
 }
+
 
 .company-card-info {
   display: flex;
@@ -128,6 +130,10 @@
 .left-menu.collapsed {
   width: 80px; /* Ancho reducido para el menú colapsado */
   padding-top: 5px;
+}
+.logoCollapsed{
+  max-width: 4.5em;
+  height: auto;
 }
 
 .menu-header.collapsed {

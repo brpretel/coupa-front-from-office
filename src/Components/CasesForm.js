@@ -108,6 +108,9 @@ function CasesForm() {
                 </select>
               </div>
             </div>
+            
+          </div>
+          <div className="case-form-right-panel">
             {/* Caso Tipo */}
             <div className="content-elements">
               <div className="element-label">
@@ -123,8 +126,6 @@ function CasesForm() {
                 />
               </div>
             </div>
-          </div>
-          <div className="case-form-right-panel">
             {/* Caso Siguiente Acción */}
             <div className="content-elements">
               <div className="element-label">
@@ -155,27 +156,35 @@ function CasesForm() {
                 />
               </div>
             </div>
+          </div>  
             {/* Caso Descripción */}
-            <div className="content-elements">
-              <div className="element-label">
-                <label>Case Description</label>
+            <div className="description-buttonContainer">
+              <div className="content-elements" id="descriptionContainer">
+                <div className="element-label">
+                  <label>Case Description</label>
+                </div>
+                <div className="element-input">
+                  <FontAwesomeIcon icon={faAlignJustify} />
+                  <textarea
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                  />
+                </div>
+                
+
               </div>
-              <div className="element-input">
-                <FontAwesomeIcon icon={faAlignJustify} />
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                />
+              {/* Botón Crear Caso */}
+              <div className="content-elements" id="buttonSubmitCase">
+                  <button type="submit">Create Case</button>     
               </div>
             </div>
-            <div className="content-elements">
-              <button type="submit">Create Case</button>
-            </div>
-          </div>
+            
+          
         </div>
       </form>
-
+      
+      {/* Historial de Casos, lo veo innecesario por ahora ya que lo de arriba es casi lo mismo}
       <div className="cases-container">
         <h2>Case History</h2>
         <div className="table-scroll-container">
@@ -206,6 +215,7 @@ function CasesForm() {
           </table>
         </div>
       </div>
+      */}
     </div>
   );
 }

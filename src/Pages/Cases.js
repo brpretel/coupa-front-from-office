@@ -43,7 +43,9 @@ function Cases() {
           <thead className="cases-table-header">
             <tr>
               <th>Creation Date</th>
+              <th>Case Title</th>
               <th>Escalation Number</th>
+              <th>Company Name</th>
               <th>Case Number</th>
               <th>Case Status</th>
               <th>Links</th>
@@ -56,7 +58,9 @@ function Cases() {
             {cases.map((cases, index) => (
               <tr key={index}>
                 <td>{cases.creation_date}</td>
+                <td>{cases.title}</td>
                 <td>{cases.jira_escalation_number}</td>
+                <td>{cases.company}</td>
                 <td>{cases.salesforce_case_number}</td>
                 <td>{cases.case_status}</td>
                 <td>{cases.case_links}</td>
@@ -76,23 +80,7 @@ function Cases() {
                     <FontAwesomeIcon icon={faPenToSquare} />
                   </button>
                 </td>
-                <td>{cases.case_links}</td>
-                <td>{cases.description}</td>
-                <td className="next-action-cell">text</td>
-                <td>
-                  <button
-                    className="action-button cases-button-green-background"
-                    title="Solved"
-                  >
-                    <FontAwesomeIcon icon={faCircleCheck} />
-                  </button>
-                  <button
-                    className="action-button cases-button-yellow-background"
-                    title="Edit"
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </button>
-                </td>
+               
               </tr>
             ))}
           </tbody>

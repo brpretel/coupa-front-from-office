@@ -9,6 +9,7 @@ import {
   faFlag,
   faForward,
   faFile,
+  faFolder
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import 'reactjs-popup/dist/index.css';
@@ -89,13 +90,15 @@ function CasesForm() {
                               </div>
                               
                               {/* Case Status */}
-                              <div className="content-elements">
+                              <div className="content-elements"
+                               id="caseStatusSelect">
                                 <div className="element-label">
                                   <label>Case Status</label>
                                 </div>
                                 <div className="element-input">
                                   <FontAwesomeIcon icon={faTemperatureHalf} />
                                   <select
+                                   
                                     name="case_status"
                                     value={formData.case_status}
                                     onChange={handleChange}
@@ -112,7 +115,26 @@ function CasesForm() {
                               
                             </div>
                             <div className="case-form-right-panel">
+                              {/* Company */}
+                            <div className="content-elements">
+                                <div className="content-elements" id="titleTextArea">
+                                  <div className="element-label">
+                                    <label>Company Name</label>
+                                  </div>
+                                  <div className="element-input">
+                                    <FontAwesomeIcon icon={faFolder} />
+                                    <textarea
+                                      name="company"
+                                      value={formData.company}
+                                      onChange={handleChange}
+                                      required
+                                    />
+                                  </div>
+                                  
+
+                                </div>
                               
+                              </div>
 
                             {/* Case Title */}
                             <div className="content-elements">

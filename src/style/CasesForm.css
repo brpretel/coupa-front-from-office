@@ -117,8 +117,9 @@ input[type=number]{
 #titleTextArea textarea{
   width: 25em;
   height: 3em;
+  min-height: 3em;
   max-width: 35em;
-  max-height: 4em;
+  max-height: 5em;
   font-family: serif;
   font-size: 18px;
   padding: 5px;
@@ -135,6 +136,13 @@ input[type=number]{
   transition: all 0.2s;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+}
+#caseStatusSelect{
+  padding-top: 3em;
+}
+.content-elements select{
+  min-height: 3em;
+  
 }
 
 .content-elements button:hover, .closeButton:hover {

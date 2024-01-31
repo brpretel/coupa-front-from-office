@@ -46,7 +46,7 @@ function Cases() {
               <th>Escalation Number</th>
               <th>Case Number</th>
               <th>Case Status</th>
-              <th>Type</th>
+              <th>Links</th>
               <th>Description</th>
               <th>Next Action</th>
               <th>Actions</th>
@@ -59,7 +59,24 @@ function Cases() {
                 <td>{cases.jira_escalation_number}</td>
                 <td>{cases.salesforce_case_number}</td>
                 <td>{cases.case_status}</td>
-                <td>{cases.case_topic}</td>
+                <td>{cases.case_links}</td>
+                <td>{cases.description}</td>
+                <td className="next-action-cell">text</td>
+                <td>
+                  <button
+                    className="action-button cases-button-green-background"
+                    title="Solved"
+                  >
+                    <FontAwesomeIcon icon={faCircleCheck} />
+                  </button>
+                  <button
+                    className="action-button cases-button-yellow-background"
+                    title="Edit"
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} />
+                  </button>
+                </td>
+                <td>{cases.case_links}</td>
                 <td>{cases.description}</td>
                 <td className="next-action-cell">text</td>
                 <td>

@@ -68,38 +68,27 @@ function CasesForm() {
                           <button className="closeButton" onClick={close}> Close </button>
                           <div className="case-form-elements">
                             <div className="case-form-left-panel">
-                              {/* Caso Número */}
+                              {/* Case number */}
                               <div className="content-elements">
                                 <div className="element-label">
                                   <label>Case Number</label>
                                 </div>
                                 <div className="element-input">
                                   <FontAwesomeIcon icon={faHashtag} />
-                                  <input
+                                  <input id="caseNumberInput"
                                     name="salesforce_case_number"
                                     type="number"
+                                    min="0"
+                                    step="1"
                                     value={formData.salesforce_case_number}
                                     onChange={handleChange}
+                                    pattern="[0-9]" onkeypress="return !(event.charCode == 46)"  title="Must be an integer number" 
                                     required
                                   />
                                 </div>
                               </div>
-                              {/* Jira Número */}
-                              <div className="content-elements">
-                                <div className="element-label">
-                                  <label>Jira Number</label>
-                                </div>
-                                <div className="element-input">
-                                  <FontAwesomeIcon icon={faArrowUpRightDots} />
-                                  <input
-                                    name="jira_escalation_number"
-                                    type="number"
-                                    value={formData.jira_escalation_number}
-                                    onChange={handleChange}
-                                  />
-                                </div>
-                              </div>
-                              {/* Caso Estado */}
+                              
+                              {/* Case Status */}
                               <div className="content-elements">
                                 <div className="element-label">
                                   <label>Case Status</label>
@@ -123,53 +112,28 @@ function CasesForm() {
                               
                             </div>
                             <div className="case-form-right-panel">
-                              {/* Caso Tipo */}
-                              <div className="content-elements">
-                                <div className="element-label">
-                                  <label>Case Type</label>
+                              
+
+                            {/* Case Title */}
+                            <div className="content-elements">
+                                <div className="content-elements" id="titleTextArea">
+                                  <div className="element-label">
+                                    <label>Case Title</label>
+                                  </div>
+                                  <div className="element-input">
+                                    <FontAwesomeIcon icon={faFile} />
+                                    <textarea
+                                      name="title"
+                                      value={formData.title}
+                                      onChange={handleChange}
+                                    />
+                                  </div>
+                                  
+
                                 </div>
-                                <div className="element-input">
-                                  <FontAwesomeIcon icon={faFlag} />
-                                  <input
-                                    name="case_type"
-                                    value={formData.case_type}
-                                    onChange={handleChange}
-                                    required
-                                  />
-                                </div>
+                              
                               </div>
-                              {/* Caso Siguiente Acción */}
-                              <div className="content-elements">
-                                <div className="element-label">
-                                  <label>Case Next Action</label>
-                                </div>
-                                <div className="element-input">
-                                  <FontAwesomeIcon icon={faForward} />
-                                  <input
-                                    name="caseNextAction"
-                                    value={formData.caseNextAction}
-                                    onChange={handleChange}
-                                    required
-                                  />
-                                </div>
-                              </div>
-                              {/* Caso Resources */}
-                              <div className="content-elements">
-                                <div className="element-label">
-                                  <label>Case Resources</label>
-                                </div>
-                                <div className="element-input">
-                                  <FontAwesomeIcon icon={faFile} />
-                                  <input
-                                    name="resources"
-                                    value={formData.resources}
-                                    onChange={handleChange}
-                                    required
-                                  />
-                                </div>
-                              </div>
-                            </div>  
-                              {/* Caso Descripción */}
+                              {/* Case Description */}
                               <div className="description-buttonContainer">
                                 <div className="content-elements" id="descriptionContainer">
                                   <div className="element-label">
@@ -196,6 +160,7 @@ function CasesForm() {
                                 </div>
                             
                           </div>
+                          </div>
                         </form>
                        
                     </div>
@@ -205,38 +170,7 @@ function CasesForm() {
         </div>
       
       
-      {/* Historial de Casos, lo veo innecesario por ahora ya que lo de arriba es casi lo mismo}
-      <div className="cases-container">
-        <h2>Case History</h2>
-        <div className="table-scroll-container">
-          <table className="cases-table">
-            <thead className="cases-table-header">
-              <tr>
-                <th>Creation Date</th>
-                <th>Last Modified</th>
-                <th>Case Number</th>
-                <th>Escalation Number</th>
-                <th>Case Status</th>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Last Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <td className="next-action-cell">text</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      */}
+      
     </div>
   );
 }

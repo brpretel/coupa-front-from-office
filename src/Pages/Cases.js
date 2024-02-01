@@ -1,79 +1,55 @@
-import "../style/Cases.css";
-import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleCheck,
-  faPenToSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import CasesList from "../Components/CaseList";
+import CasesForm from "../Components/CasesForm";
+import ProtectedRoute from "../ProtectedRoute";
+import CasePage from "../Components/CasePage";
 
 function Cases() {
-  const [cases, setCases] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [showCasesList, setShowCasesList] = useState(true);
 
+  // Manejador para el botón "Create Case"
+  const handleCreateCase = () => {
+    setShowCasesList(false);
+    navigate("cases-form");
+  };
+
+  // Manejador para el doble clic en una fila de CasesList
+  const handleRowDoubleClick = (caseData) => {
+    setShowCasesList(false);
+    navigate("edit-case", { state: { caseData } });
+  };
+
+  // Restablecer la visibilidad al regresar a la página Cases
   useEffect(() => {
-    const fetchCases = async () => {
-      try {
-        const response = await axios.get(
-          "https://coupa-backend-production.up.railway.app/cases/show_agent_cases/",
-          {
-            withCredentials: true,
-          }
-        );
-        console.log(response);
-        setCases(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchCases();
-  }, []);
+    if (
+      location.pathname.endsWith("/Cases") ||
+      location.pathname === "/Cases"
+    ) {
+      setShowCasesList(true);
+    }
+  }, [location]);
 
   return (
-    <div className="cases-container">
-      <div className="table-scroll-container">
-        <table className="cases-table">
-          <thead className="cases-table-header">
-            <tr>
-              <th>Creation Date</th>
-              <th>Escalation Number</th>
-              <th>Case Number</th>
-              <th>Case Status</th>
-              <th>Type</th>
-              <th>Description</th>
-              <th>Next Action</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cases.map((cases, index) => (
-              <tr key={index}>
-                <td>{cases.creation_date}</td>
-                <td>{cases.jira_escalation_number}</td>
-                <td>{cases.salesforce_case_number}</td>
-                <td>{cases.case_status}</td>
-                <td>{cases.case_topic}</td>
-                <td>{cases.description}</td>
-                <td className="next-action-cell">text</td>
-                <td>
-                  <button
-                    className="action-button cases-button-green-background"
-                    title="Solved"
-                  >
-                    <FontAwesomeIcon icon={faCircleCheck} />
-                  </button>
-                  <button
-                    className="action-button cases-button-yellow-background"
-                    title="Edit"
-                  >
-                    <FontAwesomeIcon icon={faPenToSquare} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div>
+      {showCasesList && (
+        <>
+          <button onClick={handleCreateCase}>Create Case</button>
+          <CasesList onRowDoubleClick={handleRowDoubleClick} />
+        </>
+      )}
+      <Routes>
+        <Route
+          path="cases-form"
+          element={<ProtectedRoute element={CasesForm} />}
+        />
+        <Route
+          path="edit-case"
+          element={<ProtectedRoute element={CasePage} />}
+        />
+      </Routes>
     </div>
   );
 }

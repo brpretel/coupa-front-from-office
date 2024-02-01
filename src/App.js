@@ -34,11 +34,7 @@ function App() {
             path="/dashboard"
             element={<ProtectedRoute element={Dashboard} />}
           />
-          <Route path="/cases" element={<ProtectedRoute element={Cases} />} />
-          <Route
-            path="/case-form"
-            element={<ProtectedRoute element={CasesForm} />}
-          />
+          <Route path="/Cases/*" element={<ProtectedRoute element={Cases} />} />
 
           <Route
             path="/escalations"

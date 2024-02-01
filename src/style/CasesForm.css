@@ -1,83 +1,35 @@
-.case-form {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  align-items: flex-start;
-  padding: 1.5% 0% 1.5% 1.5%;
-}
-
-.case-form-elements {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: aliceblue;
-  justify-content: center;
-  gap: 20px;
-  padding-left: 1.5%;
-}
-
-.case-form-left-panel,
-.case-form-right-panel {
+.cases-form-container {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  padding-top: 1.5%;
-  padding: 1.5% 0% 1.5% 0%;
+  justify-content: center;
   align-items: center;
+  background-color: aqua;
 }
 
-.content-elements {
+.cases-form-detail-sec {
   display: flex;
-  padding: 15px 0% 10px 0%;
+  flex-direction: column;
+  width: 80%;
+  background-color: red;
 }
 
-.element-label {
+.cases-form-detail-top {
+  padding: 0.5% 0% 0.5% 2%;
+}
+
+.cases-form-detail-content {
   display: flex;
-  width: 150px;
+  width: 100%;
+  background-color: antiquewhite;
 }
 
-.element-label label {
-  font-weight: bold;
-}
-
-.element-input {
+.cases-form-detail-content-left,
+.cases-form-detail-content-right {
   display: flex;
-  gap: 10px;
-  align-items: center;
+  flex-direction: column;
+  width: 50%;
 }
 
-.element-input svg {
-  width: 20px;
-}
-
-.element-input input {
-  height: 20px;
-}
-
-.element-input textarea {
-  height: 80px;
-}
-
-.content-elements button {
-  width: 100px;
-  height: 30px;
-  margin: -55px 0px 0px -165px;
-  font-weight: bold;
-  border-style: groove;
-  border-width: 2px;
-  transition: all 0.2s;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-  background-image: linear-gradient(to right, #e7ffe7, #e7ffe7);
-}
-
-.content-elements button:hover {
-  background-image: linear-gradient(to right, #96b8fd, #b3d4fb);
-  box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.3);
-}
-
-.content-elements button:active {
-  background-image: linear-gradient(to right, #8daefd, #a4c7fb);
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-  transform: translateY(2px);
+.cases-form-detail-content-left label {
+  padding-left: 5%;
 }

@@ -1,0 +1,93 @@
+.cases-Page-container {
+  display: flex;
+  height: 90vh;
+}
+
+.cases-Page-Details-Layout {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  align-items: center;
+  margin-top: 2%;
+  padding: 0 20px;
+}
+
+.cases-Page-Details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between; /* Distribuye el espacio entre los elementos */
+  gap: 30px; /* Espacio entre las columnas */
+  padding-bottom: 30px;
+  padding-left: 50px;
+}
+
+.cases-Page-Details-Left,
+.cases-Page-Details-Right {
+  flex: 1; /* Ambos toman el mismo espacio */
+  min-width: 0; /* Evita el desbordamiento */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cases-Page-Details-Left h2,
+.cases-Page-Details-Right h2 {
+  margin-bottom: 20px; /* Espacio debajo de los h2 */
+}
+
+.cases-Page-Details-Right {
+  margin-top: 40px;
+}
+
+.cases-Page-Details-Layout textarea {
+  width: calc(100% - 40px); /* Alinea el ancho con los elementos de arriba */
+  height: 250px;
+  resize: none;
+  margin-top: 20px;
+}
+
+.cases-Page-right {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: whitesmoke;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.cases-Page-right h3 {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .cases-Page-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .cases-Page-Details-Layout {
+    width: 100%;
+    align-items: flex-start;
+    padding: 0 10px;
+  }
+
+  .cases-Page-Details {
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 10px;
+  }
+
+  .cases-Page-Details-Layout textarea {
+    width: calc(100% - 20px);
+    margin-top: 10px;
+  }
+
+  .cases-Page-right {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .cases-Page-Details-Right {
+    margin-top: 10px;
+  }
+}
